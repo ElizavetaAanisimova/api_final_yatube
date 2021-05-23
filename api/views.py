@@ -10,6 +10,15 @@ from .serializers import (
 )
 
 
+class CreateListViewSet(mixins.CreateModelMixin,
+                        mixins.ListModelMixin,
+                        viewsets.GenericViewSet):
+    """
+    Viewset for viewing and creating entities
+    """
+    pass
+
+
 class PostViewSet(viewsets.ModelViewSet):
     """
     Viewset for CRUD operations with posts
@@ -46,9 +55,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         )
 
 
-class GroupViewSet(mixins.CreateModelMixin,
-                   mixins.ListModelMixin,
-                   viewsets.GenericViewSet):
+class GroupViewSet(CreateListViewSet):
     """
     Viewset for viewing and creating groups
     """
@@ -57,9 +64,7 @@ class GroupViewSet(mixins.CreateModelMixin,
     serializer_class = GroupSerializer
 
 
-class FollowViewSet(mixins.CreateModelMixin,
-                    mixins.ListModelMixin,
-                    viewsets.GenericViewSet):
+class FollowViewSet(CreateListViewSet):
     """
     Viewset for viewing and creating groups
     """
